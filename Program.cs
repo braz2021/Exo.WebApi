@@ -13,10 +13,17 @@ builder.Services.AddDbContext<ExoContext>(options =>
 builder.Services.AddTransient<ProjetoRepository>();
 
 builder.Services.AddControllers();
+builder.Services.AddTransient<UsuarioRepository,UsuarioRepository>();
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
 app.UseRouting();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
