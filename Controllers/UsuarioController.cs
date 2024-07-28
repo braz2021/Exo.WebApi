@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text; // Adicione esta linha
 
 namespace Exo.WebApi.Controllers
 {
@@ -32,45 +33,36 @@ namespace Exo.WebApi.Controllers
         [HttpPost]
         public IActionResult Post(Usuario usuario)
         {
-            Usuario usuarioBuscado = _usuarioRepository.Login(usuario.Email, usuario.Senha);
+            Usuario? usuarioBuscado = _usuarioRepository.Login(usuario.Email, usuario.Senha);
             if (usuarioBuscado == null)
             {
                 return NotFound("E-mail ou senha inválidos!");
             }
 
-            // Se o usuário for encontrado, segue a criação do token
             var claims = new[]
             {
-                // Armazena na claim o e-mail usuário autenticado
                 new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
-                // Armazena na claim o id do usuário autenticado
                 new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.Id.ToString()),
             };
 
-            // Define a chave de acesso ao token
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("exoapi-chaveautenticacao"));
-
-            // Define as credenciais do token
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("exoapichave-autenticacao"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            // Gera o token
             var token = new JwtSecurityToken(
-                issuer: "exoapi.webapi",  // Emissor do token
-                audience: "exoapi.webapi",  // Destinatário do token
-                claims: claims,  // Dados definidos acima
-                expires: DateTime.Now.AddMinutes(30),  // Tempo de expiração
-                signingCredentials: creds  // Credenciais do token
+                issuer: "exoapi.webapi",
+                audience: "exoapi.webapi",
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: creds
             );
 
-            // Retorna ok com o token
             return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
         }
 
         // GET -> /api/usuarios/{id}
-        [HttpGet("{id}")] // Faz a busca pelo ID
+        [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
-            Usuario usuario = _usuarioRepository.BuscaPorId(id);
+            Usuario? usuario = _usuarioRepository.BuscaPorId(id);
             if (usuario == null)
             {
                 return NotFound();

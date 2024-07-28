@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\brazdiniz\\Desktop\\do zero\\Exo.WebApi\\Exo.WebApi.csproj": {}
+    "C:\\Users\\brazdiniz\\Desktop\\do zero\\exo.webapi\\Exo.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\brazdiniz\\Desktop\\do zero\\Exo.WebApi\\Exo.WebApi.csproj": {
+    "C:\\Users\\brazdiniz\\Desktop\\do zero\\exo.webapi\\Exo.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\brazdiniz\\Desktop\\do zero\\Exo.WebApi\\Exo.WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\brazdiniz\\Desktop\\do zero\\exo.webapi\\Exo.WebApi.csproj",
         "projectName": "Exo.WebApi",
-        "projectPath": "C:\\Users\\brazdiniz\\Desktop\\do zero\\Exo.WebApi\\Exo.WebApi.csproj",
+        "projectPath": "C:\\Users\\brazdiniz\\Desktop\\do zero\\exo.webapi\\Exo.WebApi.csproj",
         "packagesPath": "C:\\Users\\brazdiniz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\brazdiniz\\Desktop\\do zero\\Exo.WebApi\\obj\\",
+        "outputPath": "C:\\Users\\brazdiniz\\Desktop\\do zero\\exo.webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\brazdiniz\\AppData\\Roaming\\NuGet\\NuGet.Config",
